@@ -1,9 +1,9 @@
 {
+  "homepage": "http://antran1245.github.io/horrorAPI",
   "name": "horror_form",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "homepage": "http://antran1245.github.io/horrorAPI",
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
