@@ -16,27 +16,39 @@ class HorrorForm extends Component {
         super(props);
         this.state = {
             Comedy: false,
-            Crime: false,
-            Found: false,
-            Gore: false,
-            Monster: false,
-            Paranormal: false,
-            Psychological: false,
-            Slasher: false,
             Thriller: false,
+            Drama: false,
+            Mystery: false,
             from: 0,
             to: 0,
             exact: 0,
-            info: ""
+            info: "",
+            database: []
         };
         
         this.buttonTypes = this.buttonTypes.bind(this);
+    }
+
+    componentDidMount() {
+        fetch("https://antran1245.github.io/data/movies.json")
+        .then(res => res.json())
+        .then(data => {
+            this.setState({
+                database: data
+            });
+        },
+        error => {
+            this.setState({
+                error
+            })
+        });
     }
 
     buttonTypes(event) {
         this.setState({
             [event.target.name]: (this.state[event.target.name] === false ? true : false)
         });
+        console.log(this.state.database[0]);
     }
 
     render() {
@@ -50,14 +62,9 @@ class HorrorForm extends Component {
                             <Form.Label>Choose types:</Form.Label>
                             <Row>
                                 <ButtonTypes onClick={this.buttonTypes} state={this.state.Comedy} name={"Comedy"}/>
-                                <ButtonTypes onClick={this.buttonTypes} state={this.state.Crime} name={"Crime"}/>
-                                <ButtonTypes onClick={this.buttonTypes} state={this.state.Found} name={"Found"}/>
-                                <ButtonTypes onClick={this.buttonTypes} state={this.state.Gore} name={"Gore"}/>
-                                <ButtonTypes onClick={this.buttonTypes} state={this.state.Monster} name={"Monster"}/>
-                                <ButtonTypes onClick={this.buttonTypes} state={this.state.Paranormal} name={"Paranormal"}/>
-                                <ButtonTypes onClick={this.buttonTypes} state={this.state.Psychological} name={"Psychological"}/>
-                                <ButtonTypes onClick={this.buttonTypes} state={this.state.Slasher} name={"Slasher"}/>
                                 <ButtonTypes onClick={this.buttonTypes} state={this.state.Thriller} name={"Thriller"}/>
+                                <ButtonTypes onClick={this.buttonTypes} state={this.state.Drama} name={"Drama"}/>
+                                <ButtonTypes onClick={this.buttonTypes} state={this.state.Mystery} name={"Mystery"}/>
                             </Row>
                         </Form.Group>
                         <Form.Group>
